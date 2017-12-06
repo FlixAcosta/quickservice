@@ -15,4 +15,9 @@ rest: any = RestaurantesPage;
 
   }
 
+  iraRestaurante(){
+    this.navCtrl.push(RestaurantesPage);
+
+  }
+
 }
