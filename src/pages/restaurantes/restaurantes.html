@@ -15,4 +15,11 @@
 
 <ion-content padding>
 
+  <ion-list *ngFor ="let alimento of alimentos | async">
+    <button ion-item (tap) = "detalles(alimento)">
+      {{alimento.nombre}}
+    </button>
+
+  </ion-list>
+
 </ion-content>

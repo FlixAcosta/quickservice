@@ -1,4 +1,5 @@
 export interface Alimento {
     alimento: string,
-    foto: string
+    foto: string,
+    nombre: string
 }

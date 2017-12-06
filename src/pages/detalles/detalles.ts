@@ -15,11 +15,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetallesPage {
 
+  alimento: any ={}
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    console.log(navParams);
+    this.alimento = this.navParams.get('id');
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetallesPage');
-  }
+  
 
 }

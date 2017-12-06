@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+import { Alimento } from '../../commons/Alimento';
+import { AngularFireModule } from 'angularfire2';
+import { DetallesPage } from '../index.pages';
 
 /**
  * Generated class for the RestaurantesPage page.
@@ -15,11 +20,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RestaurantesPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  alimentos: Observable<Alimento[]>;
+  alimentoDoc: AngularFirestoreDocument<Alimento[]>;
+  alimentoCollectionRef: AngularFirestoreCollection<Alimento[]>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  private database: AngularFirestore) {
+
+    this.alimentoCollectionRef = this.database.collection<Alimento[]>('restaurantes');
+    
+          this.alimentos = this.alimentoCollectionRef.snapshotChanges().map(actions => {
+            return actions.map(action => {
+              const data = action.payload.doc.data() as Alimento;
+              const id = action.payload.doc.id;
+              return { id, ...data };
+            });
+          });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RestaurantesPage');
-  }
+ iraDetalles(_alimento: Alimento){
+   this.navCtrl.push(DetallesPage, {
+    id: _alimento
+  })
+
+ }
+
+ detalles(_alimento: Alimento){
+  this.navCtrl.push(DetallesPage, {
+    id: _alimento
+  })
+}
 
 }

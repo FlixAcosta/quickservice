@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { RestaurantesPage } from '../index.pages'
+import { RestaurantesPage } from '../index.pages';
+
 
 
 @Component({
@@ -9,9 +10,14 @@ import { RestaurantesPage } from '../index.pages'
 })
 export class HomePage {
 
+ 
+
 rest: any = RestaurantesPage;
 
   constructor(public navCtrl: NavController) {
+
+      
+
 
   }
 
